@@ -1,0 +1,131 @@
+html {
+  background-color: #a349a4;
+  }
+body {
+  cursor: url('https://notdabenjamin.neocities.org/98karrots/img/omglook.png'), auto;
+  }
+
+html, body {
+  cursor: none;
+}
+.karrot {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  width: 300px;
+  }
+.add2discord {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-width: 5px;
+  border-style: inset;
+  border-color: black;
+  border-radius: 10px; /* Optional: rounds the corners */
+  background-color: #a349a4
+}
+body {
+  cursor: none; /* Hide default cursor */
+}
+h1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
+  font-size: 100px;
+  }
+h4 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  }
+h2 {
+  font-size: 75px;
+  color: white;
+}
+h3 {
+    font-size: 65px;
+    color: white;
+  }
+h5 {
+  font-size: 55px;
+  color: white;
+  }
+.custom-cursor {
+  width: 32px;
+  height: 32px;
+  background-image: url('img/omglook.png'); 
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: fixed;
+  pointer-events: none; 
+  z-index: 9999;
+  
+  transform: translate(-50%, -50%); 
+
+}
+a {
+  cursor: none; 
+  color: white;
+  }
+p { color: white;}
+
+.links {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
+  }
+
+.title {
+  margin-bottom: -20px;
+}
+
+.karrot  {
+  margin-bottom: -40px;
+}
+
+/* Mobile */
+
+/* Mobile */
+
+@media (max-width: 767px) {
+  
+  html {
+    cursor: default;
+  }
+  
+  h1 {
+    font-size: 80px;
+  }
+
+  .add2discord {
+    position: static; /* no longer fixed to screen */
+    
+    border-width: 5px;
+    border-style: inset;
+    border-color: black;
+    border-radius: 10px;
+    background-color: #a349a4;
+
+    display: block;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+
+    width: fit-content;
+  }
+  .custom-cursor {
+    display: none;
+    
+  }
+}
+
