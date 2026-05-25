@@ -8,6 +8,7 @@ class MyBot(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="!", intents=discord.Intents.default())
 
+        
     async def setup_hook(self):
         await self.tree.sync()
 
@@ -16,15 +17,25 @@ bot = MyBot()
 @bot.event
 async def on_ready():
     print(f'Logged in as {bot.user.name}\n\nLogs:\n')
+    await bot.change_presence(
+        status=discord.Status.online, 
+        activity=discord.Activity(type=discord.ActivityType.listening, name="voted #1 best discord bot out of all 3 of them")
+    )
+    print("SYSTEM: Presence set successfully.")
 
 # /meow | meow
 @bot.tree.command(name="meow", description="meow")
 async def word(interaction: discord.Interaction):
-    print(f"{interaction.user}: /meow | {interaction.channel.name} | Response: meow")
+    print(f"{interaction.user}: /meow | {interaction.channel} | Response: meow")
     await interaction.response.send_message("meow")
 
 # /about | About 98Karrots
 @bot.tree.command(name="about", description="About 98Karrots")
+@app_commands.allowed_contexts(
+    guilds=True,
+    dms=True,
+    private_channels=True
+)
 async def info(interaction: discord.Interaction):
     embed = discord.Embed(
         title="About 98Karrots",
@@ -38,11 +49,16 @@ async def info(interaction: discord.Interaction):
     embed.set_footer(text=f"Version: {version}\nRequested by {interaction.user.name}")
     embed.set_thumbnail(url="https://notdabenjamin.neocities.org/img/projects/98karrots.png")
     
-    print(f"{interaction.user}: /about | {interaction.channel.name} | Response: About 98Karrots - EMBED")
+    print(f"{interaction.user}: /about | {interaction.channel} | Response: About 98Karrots - EMBED")
     await interaction.response.send_message(embed=embed)
 
 # /privacy | Privacy Policy
 @bot.tree.command(name="privacy", description="Privacy Policy")
+@app_commands.allowed_contexts(
+    guilds=True,
+    dms=True,
+    private_channels=True
+)
 async def privacy(interaction: discord.Interaction):
     embed = discord.Embed(
         title="Privacy Policy",
@@ -58,10 +74,62 @@ async def privacy(interaction: discord.Interaction):
     embed.set_footer(text=f"Version: {version}\nRequested by {interaction.user.name}")
     embed.set_thumbnail(url="https://notdabenjamin.neocities.org/img/projects/98karrots.png")
     
-    print(f"{interaction.user}: /privacy | {interaction.channel.name} | Response: Privacy Policy - EMBED")
+    print(f"{interaction.user}: /privacy | {interaction.channel} | Response: Privacy Policy - EMBED")
     await interaction.response.send_message(embed=embed)
-    
-# Log DMs to the bot
+
+# /whoknows | Who Knows?
+@bot.tree.command(name="whoknows", description="Who Knows?")
+@app_commands.allowed_contexts(
+    guilds=True,
+    dms=True,
+    private_channels=True
+)
+async def sendfile(interaction: discord.Interaction):
+    await interaction.response.defer()
+
+    file = discord.File("who_knows_v3.mov")
+
+    await interaction.followup.send(
+        file=file
+    )
+    print(f"{interaction.user}: /whoknows | {interaction.channel} | Response: who_knows_v3.mov")
+
+# /whoasked | Like genuinely who asked?
+@bot.tree.command(name="whoasked", description="Like genuinely who asked?")
+@app_commands.allowed_contexts(
+    guilds=True,
+    dms=True,
+    private_channels=True
+)
+async def whoasked(interaction: discord.Interaction):
+    await interaction.response.defer()
+
+    file = discord.File("who_asked.mov")
+
+    await interaction.followup.send(
+        file=file
+    )
+    print(f"{interaction.user}: /whoasked | {interaction.channel} | Response: who_asked.mov")
+
+# /amogus | #reviveamogus
+@bot.tree.command(name="amogus", description="#reviveamogus")
+@app_commands.allowed_contexts(
+    guilds=True,
+    dms=True,
+    private_channels=True
+)
+async def whoasked(interaction: discord.Interaction):
+    await interaction.response.defer()
+
+    file = discord.File("amogus.png")
+
+    await interaction.followup.send(
+        content="<a:amonguschairspin:1508320990306766858><a:amongus3d:1508321342137831445><:amogus:1508321339348488192>",
+        file=file
+    )
+    print(f"{interaction.user}: /amogus | {interaction.channel} | Response: amogus.png")
+
+# DMs Response
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
@@ -73,4 +141,4 @@ async def on_message(message):
     print(f"{message.author} | DM | Response: Hello, message.author.name! This bot is not meant to be used in DMs, for questions...")
     await bot.process_commands(message)
 
-bot.run('haha-stupid-no-token-4-u')
+bot.run('no-token-4-u')
